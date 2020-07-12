@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
