@@ -42,6 +42,7 @@ exports.resizeImage = () => async (req, res, next) => {
     });
     Delete(dir);
     res.status(200).json({
+      status: true,
       message:
         "image resized! This image will only be available for a day on our servers.",
       url: `${req.headers.host}/v1/static/${name}`,
@@ -82,6 +83,7 @@ exports.cropImage = () => async (req, res, next) => {
     });
     Delete(dir);
     res.status(200).json({
+      status: true,
       message:
         "image cropped! This image will only be available for a day on our servers.",
       url: `${req.headers.host}/v1/static/${name}`,
@@ -119,6 +121,7 @@ exports.rotate = () => async (req, res, next) => {
     });
     Delete(dir);
     res.status(200).json({
+      status: true,
       message:
         "image rotated! This image will only be available for a day on our servers.",
       url: `${req.headers.host}/v1/static/${name}`,
