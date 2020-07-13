@@ -23,7 +23,7 @@ app.use("*", (req, res) =>
       "The resource you're looking for may have been moved or does not exist on this serve.",
   })
 );
-
+setInterval(gC,86400000);
 app.use((error, req, res, next) => {
   let status = error.status || 500;
   console.log({
