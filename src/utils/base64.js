@@ -39,3 +39,5 @@ function encode(file) {
     return new Buffer(bitmap).toString('base64');
 }
 console.log(dataURI);
+
+module.exports = base64;
