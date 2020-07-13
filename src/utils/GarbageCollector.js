@@ -23,5 +23,8 @@ module.exports = function GarbageCollection() {
   } catch (error) {
     console.log("garbage collection error: ", error);
   }
-  setTimeout(GarbageCollection, 86400000);
+  setTimeout(
+    GarbageCollection,
+    86400000 * (process.env.GARBAGE_COLLECTION_INTERVAL || 1)
+  );
 };
