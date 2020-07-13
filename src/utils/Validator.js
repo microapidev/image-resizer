@@ -25,7 +25,28 @@ const validations = {
       base64: Format.string,
       width: Format.number,
       height: Format.number,
-      imageExtention: Format.string,
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  croppingValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      width: Format.number.required(),
+      height: Format.number.required(),
+      top: Format.number.required(),
+      left: Format.number.required(),
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  rotationValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      angle: Format.number.required(),
+      format: Format.string,
     });
     return validator(schema, req.body, res, next);
   },
