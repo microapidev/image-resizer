@@ -21,6 +21,7 @@ module.exports = (url, image_path) =>
         err.status = 400;
         throw err;
       }
+      error.message += "garri ";
       error.status = (error.response && error.response.status) || 500;
       throw error;
     });
