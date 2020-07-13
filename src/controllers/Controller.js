@@ -1,8 +1,8 @@
 const UrlImageDownload = require("../utils/UrlImageDownlaoder");
 const Delete = require("../utils/FileDeleter");
 const ImageManipulator = require("../utils/ImageResize");
+const Base64Converter = require("../utils/base64");
 const path = require("path");
-const { url } = require("inspector");
 
 exports.resizeImage = () => async (req, res, next) => {
   const { url, base64, width, height } = req.body;
@@ -30,7 +30,10 @@ exports.resizeImage = () => async (req, res, next) => {
       __dirname,
       `../images/resizer_image_${Date.now()}.png`
     );
-    await UrlImageDownload(req.body.url, dir);
+
+    if (url) await UrlImageDownload(req.body.url, dir);
+    else await Base64Converter(base64, dir);
+
     const name = await ImageManipulator.resize({
       path: dir,
       format: req.body.format,
@@ -65,7 +68,10 @@ exports.cropImage = () => async (req, res, next) => {
       __dirname,
       `../images/cropper_image_${Date.now()}.png`
     );
-    await UrlImageDownload(req.body.url, dir);
+
+    if (url) await UrlImageDownload(req.body.url, dir);
+    else await Base64Converter(base64, dir);
+
     const name = await ImageManipulator.crop({
       path: dir,
       format: req.body.format,
@@ -102,7 +108,10 @@ exports.rotate = () => async (req, res, next) => {
       __dirname,
       `../images/rotater_image_${Date.now()}.png`
     );
-    await UrlImageDownload(req.body.url, dir);
+
+    if (url) await UrlImageDownload(req.body.url, dir);
+    else await Base64Converter(base64, dir);
+
     const name = await ImageManipulator.rotate({
       path: dir,
       format: req.body.format,
