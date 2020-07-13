@@ -19,33 +19,21 @@ const openApiDocumentation = {
       name: "CRUD Operations Routes",
     },
   ],
-  security: {
-    bearerAuth: {},
-  },
   paths: {
-    "/v1/resize":{
-      post:{
+    "/v1/resize": {
+      post: {
         tags: ["Image Resize"],
         description: "Resize Image",
         operationId: "resize",
-        security: [
-          {
-            bearerAuth: {},
-          },
-        ],
         requestBody: {
           content: {
-            "image/png": {
+            "application/json": {
               schema: {
                 $ref: "#/components/schemas/Resize",
               },
             },
-            "image/jpeg":{
-              schema: {
-                $ref: "#/components/schemas/Resize",
-              },
-            }
           },
+          required: true,
         },
         responses: {
           "200": {
@@ -69,31 +57,22 @@ const openApiDocumentation = {
             },
           },
         },
-      }
+      },
     },
-    "/v1/crop":{
-      post:{
+    "/v1/crop": {
+      post: {
         tags: ["Image Cropping"],
         description: "Crppping Image",
         operationId: "crop",
-        security: [
-          {
-            bearerAuth: {},
-          },
-        ],
         requestBody: {
           content: {
-            "image/png": {
+            "application/json": {
               schema: {
                 $ref: "#/components/schemas/Crop",
               },
             },
-            "image/jpeg":{
-              schema: {
-                $ref: "#/components/schemas/Crop",
-              },
-            }
           },
+          required: true,
         },
         responses: {
           "200": {
@@ -117,31 +96,22 @@ const openApiDocumentation = {
             },
           },
         },
-      }
+      },
     },
-    "/v1/rotate":{
-      post:{
+    "/v1/rotate": {
+      post: {
         tags: ["Image Rotation"],
         description: "Rotate Image",
         operationId: "rotate",
-        security: [
-          {
-            bearerAuth: {},
-          },
-        ],
         requestBody: {
           content: {
-            "image/png": {
+            "application/json": {
               schema: {
                 $ref: "#/components/schemas/Rotation",
               },
             },
-            "image/jpeg":{
-              schema: {
-                $ref: "#/components/schemas/Rotation",
-              },
-            }
           },
+          required: true,
         },
         responses: {
           "200": {
@@ -165,7 +135,7 @@ const openApiDocumentation = {
             },
           },
         },
-      }
+      },
     },
   },
 
@@ -180,12 +150,12 @@ const openApiDocumentation = {
           message: {
             type: "string",
           },
-          data: {
-            type: "object",
+          url: {
+            type: "string",
           },
         },
       },
-      Resize:{
+      Resize: {
         type: "object",
         properties: {
           url: {
@@ -197,15 +167,15 @@ const openApiDocumentation = {
           width: {
             type: "number",
           },
-          height:{
-            type: "number"
+          height: {
+            type: "number",
           },
-          format:{
-            type:"string"
-          }
+          format: {
+            type: "string",
+          },
         },
       },
-      Crop:{
+      Crop: {
         type: "object",
         properties: {
           url: {
@@ -217,21 +187,21 @@ const openApiDocumentation = {
           width: {
             type: "number",
           },
-          height:{
-            type: "number"
+          height: {
+            type: "number",
           },
-          format:{
-            type:"string"
+          format: {
+            type: "string",
           },
-          top:{
-            type:"number"
+          top: {
+            type: "number",
           },
-          left:{
-            type:"number"
-          }
+          left: {
+            type: "number",
+          },
         },
       },
-      Rotation:{
+      Rotation: {
         type: "object",
         properties: {
           url: {
@@ -240,22 +210,13 @@ const openApiDocumentation = {
           base64: {
             type: "string",
           },
-         angle:{
-           type:"number"
-         },
-         format:{
-          type:"string"
-         }
+          angle: {
+            type: "number",
+          },
+          format: {
+            type: "string",
+          },
         },
-      },
-    },
-    securitySchemes: {
-      bearerAuth: {
-        type: "http",
-        scheme: "bearer",
-        bearerFormat: "JWT",
-        name: "Authorization",
-        in: "header",
       },
     },
   },
