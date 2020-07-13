@@ -4,6 +4,7 @@ const routes = require("./src/routes/routes");
 const openApiDocumentation = require("./src/swagger/openApiDocumentation");
 const swaggerUi = require("swagger-ui-express");
 const app = express();
+const garbageCollector = require("./src/utils/GarbageCollector");
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ app.use("*", (req, res) =>
       "The resource you're looking for may have been moved or does not exist on this serve.",
   })
 );
-setInterval(gC,86400000);
+garbageCollector();
 app.use((error, req, res, next) => {
   let status = error.status || 500;
   console.log({
