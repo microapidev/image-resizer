@@ -1,4 +1,4 @@
-# Team-Justice-League-Backend
+# Image-Resizer
 
 A Dockerized Image Resizing Api
 
