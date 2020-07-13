@@ -12,8 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "buffer": "^5.6.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "swagger-ui-express": "^4.1.4"
+    "fs-extra": "^9.0.1",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "swagger-ui-express": "^4.1.4",
+    "url": "^0.11.0"
   }
 }
