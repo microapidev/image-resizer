@@ -13,8 +13,43 @@ const validator = async (schema, toValidate, res, next) => {
   }
 };
 
-const Format = {};
+const Format = {
+  string: Joi.string(),
+  number: Joi.number(),
+};
 
-const validations = {};
+const validations = {
+  resizingValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      width: Format.number,
+      height: Format.number,
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  croppingValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      width: Format.number.required(),
+      height: Format.number.required(),
+      top: Format.number.required(),
+      left: Format.number.required(),
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  rotationValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      angle: Format.number.required(),
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+};
 
 module.exports = validations;
