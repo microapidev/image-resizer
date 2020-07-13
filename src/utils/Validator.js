@@ -13,8 +13,22 @@ const validator = async (schema, toValidate, res, next) => {
   }
 };
 
-const Format = {};
+const Format = {
+  string: Joi.string(),
+  number: Joi.number(),
+};
 
-const validations = {};
+const validations = {
+  resizingValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      width: Format.number,
+      height: Format.number,
+      imageExtention: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+};
 
 module.exports = validations;
