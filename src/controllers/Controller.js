@@ -43,7 +43,7 @@ exports.manipulateImage = () => async (req, res, next) => {
         left,
         top,
       });
-    if (width || (height && !name))
+    if ((width || height) && !name)
       name = await ImageManipulator.resize({
         path: dir,
         format: req.body.format,
