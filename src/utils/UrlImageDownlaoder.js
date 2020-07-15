@@ -21,6 +21,6 @@ module.exports = (url, image_path) =>
         err.status = 400;
         throw err;
       }
-      error.status = error.response.status;
+      error.status = (error.response && error.response.status) || 500;
       throw error;
     });

@@ -5,11 +5,14 @@ const openApiDocumentation = require("./src/swagger/openApiDocumentation");
 const swaggerUi = require("swagger-ui-express");
 const app = express();
 const garbageCollector = require("./src/utils/GarbageCollector");
+const Cacher = require("./src/middlewares/Cacher");
 
 dotenv.config();
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ parameterLimit: 50000, extended: true }));
+
+app.use(Cacher(5000));
 
 app.use("/v1/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 app.use(routes);

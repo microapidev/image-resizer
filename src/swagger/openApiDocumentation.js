@@ -25,16 +25,16 @@ const openApiDocumentation = {
         tags: ["Image Resize"],
         description: "Resize Image",
         operationId: "resize",
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Resize",
-              },
+        parameters: [
+          {
+            in: "query",
+            name: "query",
+            required: true,
+            schema: {
+              $ref: "#/components/schemas/Resize",
             },
           },
-          required: true,
-        },
+        ],
         responses: {
           "200": {
             description: "Success",
@@ -47,6 +47,16 @@ const openApiDocumentation = {
             },
           },
           "400": {
+            description: "Bad Request",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Response",
+                },
+              },
+            },
+          },
+          "500": {
             description: "Bad Request",
             content: {
               "application/json": {
@@ -64,16 +74,16 @@ const openApiDocumentation = {
         tags: ["Image Cropping"],
         description: "Crppping Image",
         operationId: "crop",
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Crop",
-              },
+        parameters: [
+          {
+            in: "query",
+            name: "query",
+            required: true,
+            schema: {
+              $ref: "#/components/schemas/Crop",
             },
           },
-          required: true,
-        },
+        ],
         responses: {
           "200": {
             description: "Success",
@@ -95,6 +105,16 @@ const openApiDocumentation = {
               },
             },
           },
+          "500": {
+            description: "Bad Request",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Response",
+                },
+              },
+            },
+          },
         },
       },
     },
@@ -103,16 +123,16 @@ const openApiDocumentation = {
         tags: ["Image Rotation"],
         description: "Rotate Image",
         operationId: "rotate",
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Rotation",
-              },
+        parameters: [
+          {
+            in: "query",
+            name: "query",
+            required: true,
+            schema: {
+              $ref: "#/components/schemas/Rotation",
             },
           },
-          required: true,
-        },
+        ],
         responses: {
           "200": {
             description: "Success",
@@ -125,6 +145,16 @@ const openApiDocumentation = {
             },
           },
           "400": {
+            description: "Bad Request",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Response",
+                },
+              },
+            },
+          },
+          "500": {
             description: "Bad Request",
             content: {
               "application/json": {
