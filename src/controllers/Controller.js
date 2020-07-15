@@ -5,8 +5,8 @@ const Base64Converter = require("../utils/base64");
 const path = require("path");
 
 exports.resizeImage = () => async (req, res, next) => {
-  const { url, base64, width, height } = req.body;
-
+  const { url, base64, width, height } = req.query.body;
+ 
   // Validate for image entry
   if (!url && !base64) {
     return res.status(422).json({
@@ -53,7 +53,9 @@ exports.resizeImage = () => async (req, res, next) => {
 };
 
 exports.cropImage = () => async (req, res, next) => {
-  const { url, base64, width, height, top, left } = req.body;
+  const { url, base64, width, height, top, left } = req.query.body;
+  
+ 
 
   // Validate for image entry
   if (!url && !base64) {
@@ -94,7 +96,7 @@ exports.cropImage = () => async (req, res, next) => {
 };
 
 exports.rotate = () => async (req, res, next) => {
-  const { url, angle, base64 } = req.body;
+  const { url, angle, base64 } = req.query.body;
 
   // Validate for image entry
   if (!url && !base64) {
