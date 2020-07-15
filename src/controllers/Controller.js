@@ -5,8 +5,8 @@ const Base64Converter = require("../utils/base64");
 const path = require("path");
 
 exports.resizeImage = () => async (req, res, next) => {
-  const { url, base64, width, height } = req.query;
- 
+  const { url, base64, width, height } = req.body;
+
   // Validate for image entry
   if (!url && !base64) {
     return res.status(422).json({
@@ -31,12 +31,12 @@ exports.resizeImage = () => async (req, res, next) => {
       `../images/resizer_image_${Date.now()}.png`
     );
 
-    if (url) await UrlImageDownload(req.query.url, dir);
+    if (url) await UrlImageDownload(req.body.url, dir);
     else await Base64Converter(base64, dir);
 
     const name = await ImageManipulator.resize({
       path: dir,
-      format: req.query.format,
+      format: req.body.format,
       width,
       height,
     });
@@ -53,9 +53,7 @@ exports.resizeImage = () => async (req, res, next) => {
 };
 
 exports.cropImage = () => async (req, res, next) => {
-  const { url, base64, width, height, top, left } = req.query;
-  
- 
+  const { url, base64, width, height, top, left } = req.body;
 
   // Validate for image entry
   if (!url && !base64) {
@@ -72,12 +70,12 @@ exports.cropImage = () => async (req, res, next) => {
       `../images/cropper_image_${Date.now()}.png`
     );
 
-    if (url) await UrlImageDownload(req.query.url, dir);
+    if (url) await UrlImageDownload(req.body.url, dir);
     else await Base64Converter(base64, dir);
 
     const name = await ImageManipulator.crop({
       path: dir,
-      format: req.query.format,
+      format: req.body.format,
       width,
       height,
       left,
@@ -96,7 +94,7 @@ exports.cropImage = () => async (req, res, next) => {
 };
 
 exports.rotate = () => async (req, res, next) => {
-  const { url, angle, base64 } = req.query;
+  const { url, angle, base64 } = req.body;
 
   // Validate for image entry
   if (!url && !base64) {
@@ -113,12 +111,12 @@ exports.rotate = () => async (req, res, next) => {
       `../images/rotater_image_${Date.now()}.png`
     );
 
-    if (url) await UrlImageDownload(req.query.url, dir);
+    if (url) await UrlImageDownload(req.body.url, dir);
     else await Base64Converter(base64, dir);
 
     const name = await ImageManipulator.rotate({
       path: dir,
-      format: req.query.format,
+      format: req.body.format,
       angle,
     });
     Delete(dir);

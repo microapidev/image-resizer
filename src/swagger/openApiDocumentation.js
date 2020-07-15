@@ -161,6 +161,9 @@ const openApiDocumentation = {
           url: {
             type: "string",
           },
+          base64: {
+            type: "string",
+          },
           width: {
             type: "number",
           },
@@ -176,6 +179,9 @@ const openApiDocumentation = {
         type: "object",
         properties: {
           url: {
+            type: "string",
+          },
+          base64: {
             type: "string",
           },
           width: {
@@ -199,6 +205,9 @@ const openApiDocumentation = {
         type: "object",
         properties: {
           url: {
+            type: "string",
+          },
+          base64: {
             type: "string",
           },
           angle: {
