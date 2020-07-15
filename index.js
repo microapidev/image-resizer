@@ -12,7 +12,7 @@ dotenv.config();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ parameterLimit: 50000, extended: true }));
 
-app.use(Cacher(5000));
+app.use(Cacher(1000 * 60 * 60));
 
 app.use("/v1/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 app.use(routes);
