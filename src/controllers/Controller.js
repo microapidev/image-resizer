@@ -1,4 +1,5 @@
 const UrlImageDownload = require("../utils/UrlImageDownlaoder");
+const Delete = require("../utils/FileDeleter");
 const ImageManipulator = require("../utils/ImageResize");
 const Base64Converter = require("../utils/base64");
 const path = require("path");
@@ -13,23 +14,23 @@ exports.resizeImage = () => async (req, res, next) => {
     return res.status(422).json({
       status: false,
       message:
-        "You have to provide an image for manipulation to happen. You can do this in base64 format or a url",
+        "You have to provide an image for resizing to happen. You can do this in base64 format or a url",
     });
   }
 
   //Validate for resolutions
-  if (!width && !height && !angle) {
+  if (!width && !height) {
     return res.status(422).json({
       status: false,
       message:
-        "You have to provide at least either a height, width or angle for image manipulation to happen. Providing just the height or the width will maintain the images' aspect ratio if you're doing dimension operations.",
+        "You have to provide either a height or a width or both for resizing to happen. Providing just the height or the width will maintain the images' aspect ratio.",
     });
   }
 
   try {
-    let dir = path.resolve(
+    const dir = path.resolve(
       __dirname,
-      `../images/manipulation_image_${Date.now()}.png`
+      `../images/resizer_image_${Date.now()}.png`
     );
 
     if (url) await UrlImageDownload(req.query.url, dir);
@@ -129,7 +130,7 @@ exports.rotate = () => async (req, res, next) => {
     res.status(200).json({
       status: true,
       message:
-        "image manipulated! This image will only be available for a day on our servers.",
+        "image rotated! This image will only be available for a day on our servers.",
       url: `${req.headers.host}/v1/static/${name}`,
     });
   } catch (error) {

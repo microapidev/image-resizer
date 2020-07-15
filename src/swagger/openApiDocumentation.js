@@ -2,9 +2,8 @@ const openApiDocumentation = {
   swagger: "3.0",
   openapi: "3.0.1",
   info: {
-    title: " Dockerized Image Manipulation Micro Service",
-    description:
-      "A Dockerized Microservice for Manipulating Images. You can crop or resize and rotate an image with just one API call. Since cropping and resizing end up with the same result (an image with altered dimensions), you can only do one at a time. Depending on the parameters passed with the call, the image either resizes or crops and/or rotates the image about an angle anti clock-wise.",
+    title: " Dockerized Image Resizing Micro Service",
+    description: "A Dockerized Microservice for Resizing Images",
     contact: {
       name: "Image Resizing API",
     },
@@ -17,11 +16,11 @@ const openApiDocumentation = {
   ],
   tags: [
     {
-      name: "CRUD Operation",
+      name: "CRUD Operations Routes",
     },
   ],
   paths: {
-    "/v1/manipulate": {
+    "/v1/resize": {
       post: {
         tags: ["Image Resize"],
         description: "Resize Image",

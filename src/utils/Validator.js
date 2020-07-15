@@ -19,16 +19,34 @@ const Format = {
 };
 
 const validations = {
-  routeValidation: () => (req, res, next) => {
+  resizingValidation: () => (req, res, next) => {
     const schema = Joi.object().keys({
       url: Format.string,
       base64: Format.string,
       width: Format.number,
       height: Format.number,
       format: Format.string,
-      top: Format.number,
-      left: Format.number,
-      angle: Format.number,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  croppingValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      width: Format.number.required(),
+      height: Format.number.required(),
+      top: Format.number.required(),
+      left: Format.number.required(),
+      format: Format.string,
+    });
+    return validator(schema, req.body, res, next);
+  },
+  rotationValidation: () => (req, res, next) => {
+    const schema = Joi.object().keys({
+      url: Format.string,
+      base64: Format.string,
+      angle: Format.number.required(),
+      format: Format.string,
     });
     return validator(schema, req.body, res, next);
   },
