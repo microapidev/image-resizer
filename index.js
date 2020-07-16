@@ -6,11 +6,13 @@ const swaggerUi = require("swagger-ui-express");
 const app = express();
 const garbageCollector = require("./src/utils/GarbageCollector");
 const Cacher = require("./src/middlewares/Cacher");
+const CORS = require("cors");
 
 dotenv.config();
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ parameterLimit: 50000, extended: true }));
+app.use(CORS());
 
 app.use(Cacher(1000 * 60 * 60));
 

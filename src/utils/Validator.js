@@ -27,7 +27,7 @@ const validations = {
       height: Format.number,
       format: Format.string,
     });
-    return validator(schema, req.body, res, next);
+    return validator(schema, req.query, res, next);
   },
   croppingValidation: () => (req, res, next) => {
     const schema = Joi.object().keys({
@@ -39,7 +39,7 @@ const validations = {
       left: Format.number.required(),
       format: Format.string,
     });
-    return validator(schema, req.body, res, next);
+    return validator(schema, req.query, res, next);
   },
   rotationValidation: () => (req, res, next) => {
     const schema = Joi.object().keys({
@@ -48,7 +48,7 @@ const validations = {
       angle: Format.number.required(),
       format: Format.string,
     });
-    return validator(schema, req.body, res, next);
+    return validator(schema, req.query, res, next);
   },
 };
 
