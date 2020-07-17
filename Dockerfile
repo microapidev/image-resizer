@@ -12,7 +12,7 @@ RUN chmod +x wait-for.sh
 
 COPY package*.json ./
 
-USER node
+# USER node
 
 RUN npm install
 
